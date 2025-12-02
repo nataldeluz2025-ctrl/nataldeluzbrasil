@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ProductCard } from "@/components/ProductCard";
 import { Badge } from "@/components/Badge";
+import { TrustBadgesSection, InlineSecurePaymentBadge } from "@/components/TrustBadges";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -92,6 +93,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Trust Badges Section */}
+      <TrustBadgesSection />
+
       {/* Combos Section */}
       <section id="combos" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -99,9 +103,10 @@ const Index = () => {
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
               Combos de Árvore + Pisca-pisca em Promoção
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
               Combos completos saem mais baratos do que comprar separado. Economize e tenha seu Natal iluminado!
             </p>
+            <InlineSecurePaymentBadge />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
