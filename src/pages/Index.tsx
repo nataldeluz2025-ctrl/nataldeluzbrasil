@@ -3,7 +3,16 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ProductCard } from "@/components/ProductCard";
 import { Badge } from "@/components/Badge";
-import { TrustBadgesSection, InlineSecurePaymentBadge } from "@/components/TrustBadges";
+import { PromoBar } from "@/components/PromoBar";
+import { PaymentMethods } from "@/components/PaymentMethods";
+import { ProductProof } from "@/components/ProductProof";
+import { EnhancedTestimonials } from "@/components/EnhancedTestimonials";
+import { 
+  TrustBadgesSection, 
+  InlineSecurePaymentBadge, 
+  WhyTrustUsSection,
+  LimitedOfferBadge
+} from "@/components/EnhancedTrustBadges";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -17,16 +26,22 @@ import {
   Star, 
   Gift,
   CheckCircle2,
-  MessageCircle
+  MessageCircle,
+  Clock,
+  Percent,
+  Phone
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-christmas.jpg";
-import tree150 from "@/assets/tree-150cm.jpg";
-import tree180 from "@/assets/tree-180cm.jpg";
-import tree210 from "@/assets/tree-210cm.jpg";
-import lights100 from "@/assets/lights-100.jpg";
-import lights200 from "@/assets/lights-200.jpg";
-import lights300 from "@/assets/lights-300.jpg";
+import combo1Room from "@/assets/combo-1-room.jpg";
+import combo2Room from "@/assets/combo-2-room.jpg";
+import combo3Room from "@/assets/combo-3-room.jpg";
+import productTree150 from "@/assets/product-tree-150.jpg";
+import productTree180 from "@/assets/product-tree-180.jpg";
+import productTree210 from "@/assets/product-tree-210.jpg";
+import productLights100 from "@/assets/product-lights-100.jpg";
+import productLights200 from "@/assets/product-lights-200.jpg";
+import productLights300 from "@/assets/product-lights-300.jpg";
 
 const Index = () => {
   const scrollToSection = (href: string) => {
@@ -38,7 +53,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <PromoBar />
+      <div className="pt-10">
+        <Header />
+      </div>
       <WhatsAppButton />
 
       {/* Hero Section */}
@@ -52,10 +70,10 @@ const Index = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <Badge variant="promo" className="mb-6 text-base px-6 py-2 animate-fade-in">
-            Estoque Limitado para este Natal
+            🎁 Estoque Limitado para este Natal
           </Badge>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in drop-shadow-lg">
             Natal de Luz Brasil
           </h1>
           
@@ -81,14 +99,16 @@ const Index = () => {
               className="bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-6"
               onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os combos de Natal.', '_blank')}
             >
+              <MessageCircle className="mr-2 w-5 h-5" />
               Falar no WhatsApp
             </Button>
           </div>
           
-          <div className="mt-8 flex items-center justify-center gap-4 animate-fade-in">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-in">
             <Badge variant="discount" className="text-base px-4 py-2">
               Até 30% OFF
             </Badge>
+            <LimitedOfferBadge />
           </div>
         </div>
       </section>
@@ -106,48 +126,56 @@ const Index = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
               Combos completos saem mais baratos do que comprar separado. Economize e tenha seu Natal iluminado!
             </p>
-            <InlineSecurePaymentBadge />
+            <div className="flex flex-wrap justify-center gap-3">
+              <InlineSecurePaymentBadge />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProductCard
-              image={tree150}
+              image={combo1Room}
               imageAlt="Combo árvore de Natal 1,50m com pisca-pisca 100 LEDs em sala pequena"
               title="Combo 1 - Árvore 1,50m + Pisca 100 LEDs"
               description="Perfeito para salas pequenas, apartamentos e ambientes compactos."
               oldPrice="R$ 159,99"
               price="R$ 129,99"
               discount="-18%"
-              badge={{ text: "Economize R$ 30", variant: "discount" }}
+              badge={{ text: "Mais Econômico", variant: "promo" }}
               whatsappMessage="Olá! Tenho interesse no Combo 1 (Árvore 1,50m + Pisca 100 LEDs) por R$ 129,99."
             />
 
             <ProductCard
-              image={tree180}
+              image={combo2Room}
               imageAlt="Combo árvore de Natal 1,80m com pisca-pisca 200 LEDs em sala de estar"
               title="Combo 2 - Árvore 1,80m + Pisca 200 LEDs"
               description="Tamanho ideal para a maioria das salas, com iluminação intensa."
               oldPrice="R$ 279,99"
               price="R$ 229,99"
               discount="-18%"
-              badge={{ text: "Mais Vendido", variant: "bestseller" }}
+              badge={{ text: "⭐ Mais Vendido", variant: "bestseller" }}
               whatsappMessage="Olá! Tenho interesse no Combo 2 (Árvore 1,80m + Pisca 200 LEDs) por R$ 229,99."
             />
 
             <ProductCard
-              image={tree210}
+              image={combo3Room}
               imageAlt="Combo árvore de Natal 2,10m premium com pisca-pisca 300 LEDs em ambiente amplo"
               title="Combo 3 - Árvore 2,10m + Pisca 300 LEDs"
               description="Árvore grande e imponente, para quem quer um Natal de cinema."
               oldPrice="R$ 399,99"
               price="R$ 329,99"
               discount="-17%"
-              badge={{ text: "Combo Premium", variant: "premium" }}
+              badge={{ text: "👑 Premium", variant: "premium" }}
               whatsappMessage="Olá! Tenho interesse no Combo 3 (Árvore 2,10m + Pisca 300 LEDs) por R$ 329,99."
             />
           </div>
         </div>
       </section>
+
+      {/* Payment Methods */}
+      <PaymentMethods />
+
+      {/* Product Proof Section */}
+      <ProductProof />
 
       {/* Árvores Avulsas Section */}
       <section id="arvores" className="py-20">
@@ -163,7 +191,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             <ProductCard
-              image={tree150}
+              image={productTree150}
               imageAlt="Árvore de Natal 1,50m para espaços pequenos"
               title="Árvore 1,50m"
               description="Perfeita para espaços pequenos e apartamentos compactos."
@@ -173,7 +201,7 @@ const Index = () => {
             />
 
             <ProductCard
-              image={tree180}
+              image={productTree180}
               imageAlt="Árvore de Natal 1,80m tamanho padrão"
               title="Árvore 1,80m"
               description="Tamanho padrão, ideal para a maioria das salas."
@@ -183,7 +211,7 @@ const Index = () => {
             />
 
             <ProductCard
-              image={tree210}
+              image={productTree210}
               imageAlt="Árvore de Natal 2,10m premium grande"
               title="Árvore 2,10m"
               description="Árvore grande e cheia, para ambientes amplos."
@@ -209,7 +237,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             <ProductCard
-              image={lights100}
+              image={productLights100}
               imageAlt="Pisca-pisca 100 LEDs para decoração natalina"
               title="Pisca-pisca 100 LEDs"
               description="Aproximadamente 10 metros. Ideal para janelas e árvores pequenas."
@@ -218,7 +246,7 @@ const Index = () => {
             />
 
             <ProductCard
-              image={lights200}
+              image={productLights200}
               imageAlt="Pisca-pisca 200 LEDs para varandas e sacadas"
               title="Pisca-pisca 200 LEDs"
               description="Aproximadamente 20 metros. Perfeito para varandas e sacadas."
@@ -227,7 +255,7 @@ const Index = () => {
             />
 
             <ProductCard
-              image={lights300}
+              image={productLights300}
               imageAlt="Pisca-pisca 300 LEDs cortina para fachadas"
               title="Pisca-pisca 300 LEDs"
               description="Aproximadamente 30 metros. Ideal para fachadas e grandes espaços."
@@ -251,7 +279,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card className="text-center border-2 hover:border-primary transition-all">
+            <Card className="text-center border-2 hover:border-primary transition-all hover:shadow-glow-green">
               <CardContent className="pt-8 pb-6">
                 <div className="w-16 h-16 bg-gradient-christmas rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow-green">
                   <ShoppingCart className="w-8 h-8 text-white" />
@@ -263,7 +291,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center border-2 hover:border-primary transition-all">
+            <Card className="text-center border-2 hover:border-primary transition-all hover:shadow-glow-red">
               <CardContent className="pt-8 pb-6">
                 <div className="w-16 h-16 bg-gradient-festive rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow-red">
                   <MessageCircle className="w-8 h-8 text-white" />
@@ -275,7 +303,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center border-2 hover:border-primary transition-all">
+            <Card className="text-center border-2 hover:border-primary transition-all hover:shadow-glow-gold">
               <CardContent className="pt-8 pb-6">
                 <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow-gold">
                   <Gift className="w-8 h-8 text-accent-foreground" />
@@ -290,52 +318,68 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Why Trust Us Section */}
+      <WhyTrustUsSection />
+
       {/* Benefícios Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Por Que Comprar com a Natal de Luz Brasil?
+              Por Que Comprar Conosco?
             </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              5 motivos para escolher a Natal de Luz Brasil
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center border-2">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <Card className="text-center border-2 hover:border-primary transition-all">
               <CardContent className="pt-8 pb-6">
-                <Zap className="w-12 h-12 text-accent mx-auto mb-4" />
+                <Percent className="w-12 h-12 text-accent mx-auto mb-4" />
                 <h3 className="font-bold text-lg mb-2">Descontos em Combos</h3>
                 <p className="text-sm text-muted-foreground">
-                  Combos prontos com desconto em relação ao preço individual
+                  Economize comprando combos prontos
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 hover:border-primary transition-all">
               <CardContent className="pt-8 pb-6">
                 <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-bold text-lg mb-2">Qualidade Garantida</h3>
+                <h3 className="font-bold text-lg mb-2">Garantia 7 Dias</h3>
                 <p className="text-sm text-muted-foreground">
-                  Produtos selecionados com boa qualidade
+                  Troca garantida contra defeitos
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 hover:border-primary transition-all">
               <CardContent className="pt-8 pb-6">
-                <MessageCircle className="w-12 h-12 text-secondary mx-auto mb-4" />
+                <Clock className="w-12 h-12 text-secondary mx-auto mb-4" />
                 <h3 className="font-bold text-lg mb-2">Atendimento Rápido</h3>
                 <p className="text-sm text-muted-foreground">
-                  Atendimento humanizado pelo WhatsApp
+                  Resposta em minutos pelo WhatsApp
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 hover:border-primary transition-all">
               <CardContent className="pt-8 pb-6">
                 <Truck className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="font-bold text-lg mb-2">Entrega para Todo Brasil</h3>
+                <h3 className="font-bold text-lg mb-2">Entrega Brasil Todo</h3>
                 <p className="text-sm text-muted-foreground">
-                  Pagamento facilitado (PIX, cartão)
+                  Enviamos para todas as regiões
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-2 hover:border-primary transition-all">
+              <CardContent className="pt-8 pb-6">
+                <Star className="w-12 h-12 text-accent mx-auto mb-4 fill-accent" />
+                <h3 className="font-bold text-lg mb-2">Qualidade Premium</h3>
+                <p className="text-sm text-muted-foreground">
+                  Produtos selecionados e testados
                 </p>
               </CardContent>
             </Card>
@@ -344,8 +388,12 @@ const Index = () => {
       </section>
 
       {/* Mega Promoção Banner */}
-      <section className="py-16 bg-gradient-festive text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-16 bg-gradient-festive text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
             🎄 Mega Promoção de Natal 🎄
           </h2>
@@ -355,76 +403,29 @@ const Index = () => {
           <p className="text-lg mb-8">
             Descontos especiais em combos a partir de R$ 129,99
           </p>
-          <Button
-            size="lg"
-            className="bg-white text-secondary hover:bg-white/90 font-bold text-lg px-8 py-6"
-            onClick={() => scrollToSection('#combos')}
-          >
-            Ver Todos os Combos
-          </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-white text-secondary hover:bg-white/90 font-bold text-lg px-8 py-6"
+              onClick={() => scrollToSection('#combos')}
+            >
+              Ver Todos os Combos
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-secondary font-bold text-lg px-8 py-6"
+              onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Quero aproveitar a promoção de Natal!', '_blank')}
+            >
+              <MessageCircle className="mr-2" />
+              Comprar Agora
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Depoimentos Section */}
-      <section id="depoimentos" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Clientes com o Natal Iluminado
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-2">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "A árvore chegou perfeita e as luzes são lindas! O combo ficou muito mais barato 
-                  do que comprar separado. Super recomendo!"
-                </p>
-                <p className="font-bold">Maria Silva</p>
-                <p className="text-sm text-muted-foreground">São Paulo, SP</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "Atendimento pelo WhatsApp foi muito rápido e a entrega chegou antes do prazo. 
-                  Minha sala ficou linda com a árvore de 1,80m!"
-                </p>
-                <p className="font-bold">João Santos</p>
-                <p className="text-sm text-muted-foreground">Rio de Janeiro, RJ</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "Comprei o combo premium para minha casa nova e estou encantada! 
-                  A árvore de 2,10m é maravilhosa e as 300 luzes deixam tudo mágico."
-                </p>
-                <p className="font-bold">Ana Costa</p>
-                <p className="text-sm text-muted-foreground">Belo Horizonte, MG</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <EnhancedTestimonials />
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-muted/30">
@@ -437,7 +438,7 @@ const Index = () => {
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left">
+              <AccordionTrigger className="text-left font-semibold">
                 Vocês entregam para todo o Brasil?
               </AccordionTrigger>
               <AccordionContent>
@@ -447,7 +448,7 @@ const Index = () => {
             </AccordionItem>
 
             <AccordionItem value="item-2">
-              <AccordionTrigger className="text-left">
+              <AccordionTrigger className="text-left font-semibold">
                 Qual o prazo médio de entrega?
               </AccordionTrigger>
               <AccordionContent>
@@ -458,17 +459,37 @@ const Index = () => {
             </AccordionItem>
 
             <AccordionItem value="item-3">
-              <AccordionTrigger className="text-left">
+              <AccordionTrigger className="text-left font-semibold">
                 Como funciona o pagamento?
               </AccordionTrigger>
               <AccordionContent>
-                Aceitamos pagamento via PIX (com desconto), cartão de crédito em até 3x sem juros, 
-                e cartão de débito. Tudo é combinado diretamente pelo WhatsApp de forma segura.
+                Aceitamos pagamento via PIX (com 5% de desconto), cartão de crédito em até 3x sem juros 
+                (Visa, Mastercard, Elo), e cartão de débito. Tudo é combinado diretamente pelo WhatsApp de forma segura.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4">
-              <AccordionTrigger className="text-left">
+              <AccordionTrigger className="text-left font-semibold">
+                Qual a garantia dos produtos?
+              </AccordionTrigger>
+              <AccordionContent>
+                Todos os nossos produtos têm garantia de 7 dias contra defeitos de fabricação. 
+                Se houver algum problema, basta entrar em contato que resolveremos rapidamente.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5">
+              <AccordionTrigger className="text-left font-semibold">
+                As árvores vêm desmontadas? É fácil de montar?
+              </AccordionTrigger>
+              <AccordionContent>
+                Sim, as árvores vêm desmontadas para facilitar o transporte. A montagem é muito 
+                simples e rápida - basta encaixar os galhos no tronco central. Leva em média 10-15 minutos.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6">
+              <AccordionTrigger className="text-left font-semibold">
                 Posso escolher o tipo de luz (branca, quente, colorida)?
               </AccordionTrigger>
               <AccordionContent>
@@ -477,18 +498,8 @@ const Index = () => {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-5">
-              <AccordionTrigger className="text-left">
-                As árvores vêm desmontadas? É fácil de montar?
-              </AccordionTrigger>
-              <AccordionContent>
-                Sim, as árvores vêm desmontadas para facilitar o transporte. A montagem é muito 
-                simples e rápida - basta encaixar os galhos no tronco central. Acompanha instruções.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-6">
-              <AccordionTrigger className="text-left">
+            <AccordionItem value="item-7">
+              <AccordionTrigger className="text-left font-semibold">
                 Os combos vêm com a árvore e o pisca-pisca juntos?
               </AccordionTrigger>
               <AccordionContent>
@@ -497,23 +508,13 @@ const Index = () => {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-7">
-              <AccordionTrigger className="text-left">
-                Consigo desconto em compras em quantidade para empresa ou condomínio?
+            <AccordionItem value="item-8">
+              <AccordionTrigger className="text-left font-semibold">
+                Consigo desconto em compras em quantidade?
               </AccordionTrigger>
               <AccordionContent>
                 Sim! Para compras em quantidade (acima de 5 unidades), oferecemos descontos especiais. 
-                Entre em contato pelo WhatsApp para solicitar um orçamento personalizado.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-8">
-              <AccordionTrigger className="text-left">
-                Os LEDs têm garantia?
-              </AccordionTrigger>
-              <AccordionContent>
-                Sim! Todos os nossos pisca-piscas de LED têm garantia de 3 meses contra defeitos 
-                de fabricação. Se houver algum problema, basta entrar em contato que resolveremos.
+                Ideal para empresas, condomínios e eventos. Entre em contato pelo WhatsApp para solicitar um orçamento.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -532,7 +533,7 @@ const Index = () => {
             </p>
           </div>
 
-          <Card className="border-2">
+          <Card className="border-2 shadow-lg">
             <CardContent className="pt-8 pb-8">
               <div className="text-center mb-8">
                 <Button
@@ -543,15 +544,27 @@ const Index = () => {
                   <MessageCircle className="mr-2" />
                   Chamar no WhatsApp
                 </Button>
-                <p className="text-sm text-muted-foreground">
-                  WhatsApp: (11) 99999-9999
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  E-mail: contato@nataldeluzbrasil.com.br
-                </p>
+                <div className="flex flex-col gap-2 items-center">
+                  <p className="text-base text-foreground font-semibold flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    WhatsApp: (11) 99999-9999
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    E-mail: contato@nataldeluzbrasil.com.br
+                  </p>
+                </div>
               </div>
 
-              <form className="space-y-4" onSubmit={(e) => {
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-border" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">ou envie uma mensagem</span>
+                </div>
+              </div>
+
+              <form className="space-y-4 mt-6" onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
                 const nome = formData.get('nome');
@@ -603,6 +616,9 @@ const Index = () => {
           </Card>
         </div>
       </section>
+
+      {/* Second Payment Methods (Footer) */}
+      <PaymentMethods />
 
       <Footer />
     </div>

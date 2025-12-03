@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        christmas: {
+          green: "hsl(var(--christmas-green))",
+          "green-dark": "hsl(var(--christmas-green-dark))",
+          red: "hsl(var(--christmas-red))",
+          gold: "hsl(var(--christmas-gold))",
+          cream: "hsl(var(--christmas-cream))",
+        },
       },
       backgroundImage: {
         'gradient-christmas': 'var(--gradient-christmas)',
